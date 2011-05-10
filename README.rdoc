@@ -1,0 +1,27 @@
+= BlogEngine
+
+BlogEngine is a Rails Engine that makes adding a blog to your application a breeze
+
+= Install
+
+  gem install blog_engine
+
+
+= Features
+
+* Create custom pages
+* Draft articles
+* Set publishing date
+* Customise perma-links
+* Add tags to an articles
+* Create categories to add articles
+* Preview articles before publishing and updating
+* Real time comments on articles
+* Share articles with social networks
+* Comment via social networks
+* Easy to use caching mechanism
+
+= Future releases
+* Database agnostic
+
+This project rocks and uses MIT-LICENSE.
