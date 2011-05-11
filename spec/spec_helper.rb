@@ -4,6 +4,7 @@ ENV["RAILS_ENV"] = "test"
 require File.expand_path("../dummy/config/environment.rb",  __FILE__)
 require "rails/test_help"
 require "rspec/rails"
+require 'faker'
 
 ActionMailer::Base.delivery_method = :test
 ActionMailer::Base.perform_deliveries = true
@@ -27,7 +28,12 @@ RSpec.configure do |config|
   # methods or matchers
   require 'rspec/expectations'
   config.include RSpec::Matchers
-
+  config.include Devise::TestHelpers, :type => :controller
+  
   # == Mock Framework
   config.mock_with :rspec
+  
+  config.before(:each) do
+    Mongoid.master.collections.select {|c| c.name !~ /system/ }.each(&:drop)
+  end
 end

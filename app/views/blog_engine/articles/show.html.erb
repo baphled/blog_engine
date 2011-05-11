@@ -1,0 +1,11 @@
+<h1><%= @article.title %></h1>
+<%=raw @article.content %>
+
+<% unless @article.categories.empty? %>
+  Categories:
+  <% @article.categories.each do |category| %>
+  <ul>
+    <li><%= category.title %></li>
+  </ul>
+  <% end %>
+<% end %>

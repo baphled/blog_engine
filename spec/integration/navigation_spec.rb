@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe "Navigation" do
   include Capybara
+  include Rails.application.routes.url_helpers
   
   it "should be a valid app" do
     ::Rails.application.should be_a(Dummy::Application)
@@ -9,19 +10,61 @@ describe "Navigation" do
   
   context "creating an article as a signed in user" do
     
-    it "creating a new draft" do
-      pending 'Yet to implement'
-      # sign in
-      # visit articles page
-      # fill in title
-      # fill in content
-      # add tags
-      # save draft
-      # displayed as a draft
+    before(:each) do
+      @author = Author.create(:email => Faker::Internet.email, :password => 'foobar')
+      visit 'authors/sign_in'
+      fill_in 'Email', :with => @author.email
+      fill_in 'Password', :with => @author.password
+
+      click_button 'Sign in'
     end
     
-    it "allows us to create new categories"
-    it "can set an articles category"
+    it "creating a new draft" do
+      visit new_blog_engine_article_path
+
+      fill_in 'Title', :with => 'My new article'
+      fill_in 'Content', :with => '<p>This is my article</p><p>I love to write</p>'
+      
+      click_button 'Save Draft'
+      
+      page.should have_content "My new article"
+      page.should have_content "This is my article"
+      page.should have_content "I love to write"
+    end
+    
+    it "allows us to create new categories" do
+      visit new_blog_engine_category_path
+      
+      fill_in 'Title', :with => 'My Category'
+      
+      click_button 'Save Category'
+      
+      visit new_blog_engine_article_path
+      
+      page.should have_content "Categories"
+      page.should have_content "My Category"
+    end
+    
+    it "can set an articles category" do
+      visit new_blog_engine_category_path
+      
+      fill_in 'Title', :with => 'My Category'
+      
+      click_button 'Save Category'
+      
+      visit new_blog_engine_article_path
+      
+      fill_in 'Title', :with => 'My new article'
+      fill_in 'Content', :with => 'This is my article'
+      
+      check 'My Category'
+      
+      click_button 'Save Draft'
+      save_and_open_page
+      page.should have_content "Categories:"
+      page.should have_content "My Category"
+    end
+    
     it "displays the articles tags"
     it "can set an articles publication date"
   end

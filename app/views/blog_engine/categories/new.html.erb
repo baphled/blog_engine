@@ -1,0 +1,4 @@
+<%= simple_form_for(@category, :url => blog_engine_categories_path, :html => {:method => :post}) do |f| %>
+  <%= f.input :title %>
+  <%= f.button :submit, 'Save Category' %>
+<% end %>

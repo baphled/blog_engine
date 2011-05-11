@@ -1,4 +1,20 @@
+GIT
+  remote: https://github.com/liveh2o/timecop.git
+  revision: 6d46a19336a0a375310e471e7e95a280bff8eb3d
+  specs:
+    timecop (0.3.6)
+
+GIT
+  remote: https://github.com/mongoid/mongoid.git
+  revision: b2eaa45decdd0418150dcb267a4da7a39e7fb94e
+  specs:
+    mongoid (2.0.1)
+      activemodel (~> 3.0)
+      mongo (~> 1.3)
+      tzinfo (~> 0.3.22)
+
 GEM
+  remote: http://rubygems.org/
   remote: http://rubygems.org/
   specs:
     abstract (1.0.0)
@@ -29,6 +45,9 @@ GEM
       activesupport (= 3.0.7)
     activesupport (3.0.7)
     arel (2.0.9)
+    bcrypt-ruby (2.1.4)
+    bson (1.3.0)
+    bson_ext (1.3.0)
     builder (2.1.2)
     capybara (0.4.1.2)
       celerity (>= 0.7.9)
@@ -42,21 +61,56 @@ GEM
     celerity (0.8.9)
     childprocess (0.1.8)
       ffi (~> 1.0.6)
+    coderay (0.9.8)
+    configatron (2.7.2)
+      yamler (>= 0.1.0)
+    configuration (1.2.0)
+    cover_me (1.0.0.rc6)
+      configatron
+      hashie
     culerity (0.2.15)
+    devise (1.3.4)
+      bcrypt-ruby (~> 2.1.2)
+      orm_adapter (~> 0.0.3)
+      warden (~> 1.0.3)
     diff-lcs (1.1.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
+    faker (0.9.5)
+      i18n (~> 0.4)
     ffi (1.0.7)
       rake (>= 0.8.7)
+    growl (1.0.3)
+    guard (0.3.4)
+      thor (~> 0.14.6)
+    guard-bundler (0.1.2)
+      guard (>= 0.2.2)
+    guard-rspec (0.3.1)
+      guard (>= 0.2.2)
+    hashie (1.0.0)
     i18n (0.5.0)
+    jquery-rails (1.0)
+      rails (~> 3.0)
+      thor (~> 0.14)
     json_pure (1.5.1)
+    launchy (0.4.0)
+      configuration (>= 0.0.5)
+      rake (>= 0.8.1)
     mail (2.2.19)
       activesupport (>= 2.3.6)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    markdownizer (0.3.6)
+      activerecord (>= 3.0.3)
+      coderay
+      rdiscount
     mime-types (1.16)
+    mongo (1.3.0)
+      bson (>= 1.3.0)
+    nifty-generators (0.4.6)
     nokogiri (1.4.4)
+    orm_adapter (0.0.5)
     polyglot (0.3.1)
     rack (1.2.2)
     rack-mount (0.6.14)
@@ -77,6 +131,9 @@ GEM
       rake (>= 0.8.7)
       thor (~> 0.14.4)
     rake (0.8.7)
+    rb-fsevent (0.4.0)
+    rdiscount (1.6.8)
+    redcarpet (1.13.1)
     rspec (2.6.0.rc6)
       rspec-core (= 2.6.0.rc6)
       rspec-expectations (= 2.6.0.rc6)
@@ -96,19 +153,41 @@ GEM
       ffi (>= 1.0.7)
       json_pure
       rubyzip
+    simple_form (1.3.1)
     sqlite3 (1.3.3)
     thor (0.14.6)
     treetop (1.4.9)
       polyglot (>= 0.3.1)
     tzinfo (0.3.27)
+    warden (1.0.4)
+      rack (>= 1.0)
     xpath (0.1.4)
       nokogiri (~> 1.3)
+    yamler (0.1.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  bson_ext
   capybara (>= 0.4.0)
+  cover_me
+  devise (>= 1.2.rc)
+  faker
+  growl
+  guard
+  guard-bundler
+  guard-rspec
+  jquery-rails (>= 0.2.6)
+  launchy
+  markdownizer
+  mongoid!
+  nifty-generators
   rails (= 3.0.7)
-  rspec-rails (>= 2.0.0.beta)
+  rb-fsevent
+  rdiscount
+  redcarpet
+  rspec-rails (>= 2.0.0.beta.20)
+  simple_form
   sqlite3
+  timecop!
