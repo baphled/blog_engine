@@ -60,12 +60,31 @@ describe "Navigation" do
       check 'My Category'
       
       click_button 'Save Draft'
-      save_and_open_page
+      
       page.should have_content "Categories:"
       page.should have_content "My Category"
     end
     
-    it "displays the articles tags"
+    it "displays the articles tags" do
+      visit new_blog_engine_category_path
+      
+      fill_in 'Title', :with => 'My Category'
+      
+      click_button 'Save Category'
+      
+      visit new_blog_engine_article_path
+      
+      fill_in 'Title', :with => 'My new article'
+      fill_in 'Content', :with => 'This is my article'
+      fill_in 'Tags', :with => 'my stuff, random'
+      
+      check 'My Category'
+      
+      click_button 'Save Draft'
+      
+      page.should have_content "Tags: my stuff, random"
+    end
+    
     it "can set an articles publication date"
   end
   

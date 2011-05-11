@@ -19,6 +19,10 @@ describe BlogEngine::Article do
     @article.categories.should be_empty
   end
   
+  it "has tags" do
+    @article.should respond_to :tags
+  end
+  
   describe "markdown content" do
     it "should convert markdown to HTML" do
       @article.content = """

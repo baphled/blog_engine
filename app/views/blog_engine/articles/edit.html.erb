@@ -1,6 +1,7 @@
 <%= simple_form_for(@article, :url => blog_engine_article_path, :html => {:method => :put}) do |f| %>
   <%= f.input :title %>
   <%= f.input :content, :as => :text, :input_html => { :value => @article.content_source } %>
+  <%= f.input :tags %>
   
   <%= f.association :categories, :collection => BlogEngine::Category.find(:all), :prompt => 'Select Category', :as => :check_boxes %>
   
