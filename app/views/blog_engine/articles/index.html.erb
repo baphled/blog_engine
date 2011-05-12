@@ -1,1 +1,63 @@
 Admin all articles here
+
+<section id="drafts">
+  <h1>Drafts</h1>
+  <% if not @drafts.empty? %>
+  <table>
+    <tr>
+      <th>title</th>
+      <th>tags</th>
+      <th>created at</th>
+      <th>author</th>
+      <th>category</th>
+    </tr>
+    <% @drafts.each do |article| %>
+    <tr>
+      <td><%= article.title %></td>
+      <td><%= article.tags %></td>
+      <td><%= article.updated_at.to_s :long %></td>
+      <td><%= article.author.full_name %></td>
+      <td>
+      <% article.categories.each do |category| %>
+        <%= category.title %>
+        <%= ', ' unless article.categories.last == category %>
+      <% end %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+  <% else %>
+  <p>No drafts present</p>
+  <% end %>
+</section>
+
+<section id="published">
+  <h1>Published</h1>
+  <% if not @published.empty? %>
+  <table>
+    <tr>
+      <th>title</th>
+      <th>tags</th>
+      <th>published at</th>
+      <th>author</th>
+      <th>category</th>
+    </tr>
+    <% @published.each do |article| %>
+    <tr>
+      <td><%= article.title %></td>
+      <td><%= article.tags %></td>
+      <td><%= article.published_at.to_s :long %></td>
+      <td><%= article.author.full_name %></td>
+      <td>
+      <% article.categories.each do |category| %>
+        <%= category.title %>
+        <%= ', ' unless article.categories.last == category %>
+      <% end %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+  <% else%>
+  <p>No articles published</p>
+  <% end %>
+</section>

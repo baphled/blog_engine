@@ -1,7 +1,6 @@
 <h1><%= @article.title %></h1>
 <%=raw @article.content %>
 
-
 <% unless @article.categories.empty? %>
   Categories:
   <% @article.categories.each do |category| %>
@@ -11,5 +10,3 @@
   <% end %>
 <% end %>
 <p>Tags: <%= @article.tags %></p>
-
-<%= link_to 'Edit', edit_blog_engine_article_path(:id => @article.id) %>

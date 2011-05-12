@@ -6,4 +6,5 @@
   <%= f.association :categories, :collection => BlogEngine::Category.find(:all), :prompt => 'Select Category', :as => :check_boxes %>
   
   <%= f.button :submit, 'Save Draft' %>
+  <%= f.submit 'Publish' %>
 <% end %>

@@ -16,6 +16,7 @@ gem 'simple_form'
 gem 'mongoid', :git => "https://github.com/mongoid/mongoid.git"
 gem 'bson_ext'
 gem 'mongoid_taggable'
+gem 'mongoid_slug', :require => 'mongoid/slug'
 
 gem 'rdiscount'
 gem 'redcarpet'

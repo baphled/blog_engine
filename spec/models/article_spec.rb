@@ -23,6 +23,25 @@ describe BlogEngine::Article do
     @article.should respond_to :tags
   end
   
+  it "has a slug" do
+    @article.should respond_to :slug
+  end
+  
+  context "publishing an article" do
+    before(:each) do
+      @article.publicise
+    end
+    
+    it "can be set to published" do
+      @article.should be_published
+    end
+  
+    it "has a published at date" do
+      @article.should respond_to :published_at
+    end
+    
+  end
+  
   describe "markdown content" do
     it "should convert markdown to HTML" do
       @article.content = """

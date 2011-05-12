@@ -1,7 +1,9 @@
 module BlogEngine
   class ArticlesController < ApplicationController
-    
+
     def index
+      @drafts = BlogEngine::Article.drafts
+      @published = BlogEngine::Article.publicised
     end
     
     def new
@@ -14,18 +16,27 @@ module BlogEngine
     end
     
     def create
-      @article = BlogEngine::Article.new params[:blog_engine_article]
+      @article = current_author.articles.new params[:blog_engine_article]
+      if params[:commit] == 'Publish'
+        flash[:notice] = "#{@article.title} was published"
+        @article.publicise
+      end
       if @article.save
-        redirect_to blog_engine_article_path :id => @article.id
+        flash[:notice] = 'Created new draft' if flash[:notice].nil?
+        redirect_to blog_engine_articles_path
       else
         render :new
       end
     end
     
     def update
-      @article = BlogEngine::Article.find params[:id]
+      @article = current_author.articles.find params[:id]
+      if params[:commit] == 'Publish'
+        flash[:notice] = "#{@article.title} was published"
+        @article.publicise
+      end
       if @article.update_attributes params[:blog_engine_article]
-        redirect_to blog_engine_article_path :id => @article.id
+        redirect_to blog_engine_articles_path
       else
         render :edit
       end
@@ -33,6 +44,16 @@ module BlogEngine
     
     def show
       @article = BlogEngine::Article.find params[:id]
+    end
+    
+    def article
+      date = Date.new params[:year].to_i, params[:month].to_i
+      @article = BlogEngine::Article
+        .where(:published_at.gte => date)
+        .where(:published_at.lte => date.end_of_month)
+        .where(:slug => params[:slug])
+        .publicised
+        .first
     end
   end
 end
