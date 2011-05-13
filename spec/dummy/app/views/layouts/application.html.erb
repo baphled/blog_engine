@@ -14,6 +14,13 @@
     <%= yield(:head) %>
   </head>
   <body>
+    <menu>
+      <ol>
+        <li>
+          <%= link_to "New Article", new_blog_engine_article_path %>
+        </li>
+      </ol>
+    </menu>
     <div id="container">
       <% flash.each do |name, msg| %>
         <%= content_tag :div, msg, :id => "flash_#{name}" %>

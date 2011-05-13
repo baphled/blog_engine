@@ -1,12 +1,14 @@
-<h1><%= @article.title %></h1>
-<%=raw @article.content %>
+<article>
+  <h1><%= @article.title %></h1>
+  <%=raw @article.content %>
 
-<% unless @article.categories.empty? %>
-  Categories:
-  <% @article.categories.each do |category| %>
-  <ul>
-    <li><%= category.title %></li>
-  </ul>
+  <% unless @article.categories.empty? %>
+    Categories:
+    <% @article.categories.each do |category| %>
+    <ul>
+      <li><%= category.title %></li>
+    </ul>
+    <% end %>
   <% end %>
-<% end %>
-<p>Tags: <%= @article.tags %></p>
+  <p>Tags: <%= @article.tags %></p>
+</article>

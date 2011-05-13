@@ -78,7 +78,7 @@ describe "Navigation" do
       click_button 'Save Draft'
       
       within("section#drafts") do
-        page.should have_content "author"
+        page.should have_content "Author"
         page.should have_content "Scooby Doo"
       end
     end
@@ -213,15 +213,12 @@ describe "Navigation" do
     end
     
     it "does not display drafts until they are published"
-    
-    it "link contains the date it was published"
-    it "can not be viewed by guest users"
     it "can set an articles publication date"
-    
     it "should use gists to code examples"
   end
   
   context "draft versions" do
+    it "can not be viewed by guest users"
     it "does not display drafts on the main page"
     it "allows us to version our draft"
     it "overwrites as the current draft with a previous version"
@@ -234,6 +231,10 @@ describe "Navigation" do
   context "published articles" do
     it "does not display an article until it is published"
     it "published articles perma-link can not change"
+  end
+  
+  context "displaying articles with a given year and month" do
+    it "displays all found published articles"
   end
   
   context "displaying articles with a given category" do

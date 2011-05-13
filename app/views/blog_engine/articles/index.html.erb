@@ -1,27 +1,36 @@
-Admin all articles here
-
 <section id="drafts">
   <h1>Drafts</h1>
   <% if not @drafts.empty? %>
   <table>
     <tr>
-      <th>title</th>
-      <th>tags</th>
-      <th>created at</th>
-      <th>author</th>
-      <th>category</th>
+      <th>Title</th>
+      <th>Created at</th>
+      <th>Author</th>
+      <th>Tags</th>
+      <th>Category</th>
+      <th>Manage</th>
     </tr>
     <% @drafts.each do |article| %>
     <tr>
       <td><%= article.title %></td>
-      <td><%= article.tags %></td>
       <td><%= article.updated_at.to_s :long %></td>
       <td><%= article.author.full_name %></td>
       <td>
+      <td><%= article.tags %></td>
       <% article.categories.each do |category| %>
         <%= category.title %>
         <%= ', ' unless article.categories.last == category %>
       <% end %>
+      </td>
+      <td>
+        <ul>
+          <li>
+            <%= link_to 'Show', blog_engine_article_path(:id => article.id) %>
+          </li>
+          <li>
+            <%= link_to 'Edit', edit_blog_engine_article_path(:id => article.id) %>
+          </li>
+        </ul>
       </td>
     </tr>
     <% end %>
@@ -36,24 +45,39 @@ Admin all articles here
   <% if not @published.empty? %>
   <table>
     <tr>
-      <th>title</th>
-      <th>tags</th>
-      <th>published at</th>
-      <th>author</th>
-      <th>category</th>
+      <th>Title</th>
+      <th>Published at</th>
+      <th>Author</th>
+      <th>Tags</th>
+      <th>Category</th>
+      <th>Manage</th>
     </tr>
     <% @published.each do |article| %>
     <tr>
       <td><%= article.title %></td>
-      <td><%= article.tags %></td>
       <td><%= article.published_at.to_s :long %></td>
       <td><%= article.author.full_name %></td>
+      <td><%= article.tags %></td>
       <td>
       <% article.categories.each do |category| %>
         <%= category.title %>
         <%= ', ' unless article.categories.last == category %>
       <% end %>
       </td>
+      <td>
+        <ul>
+          <li>
+            <%= link_to 'Edit', edit_blog_engine_article_path(:id => article.id) %>
+          </li>
+          <li>
+            <%= link_to 'Published article', blog_engine_published_article_path(
+              :year => article.published_at.year,
+              :month => article.published_at.month,
+              :slug => article.slug) %>
+          </li>
+        </ul>
+      </td>
+      
     </tr>
     <% end %>
   </table>
