@@ -25,11 +25,13 @@
       <% flash.each do |name, msg| %>
         <%= content_tag :div, msg, :id => "flash_#{name}" %>
       <% end %>
+      <% if @tag_cloud.present? %>
       <section id="tag_cloud">
         <% tag_cloud(@tag_cloud, %w(xxs xs s l xl xxl)) do |tag, css_class| %>
           <%= link_to tag[0], blog_engine_published_articles_by_tag_path(:tag => tag[0]), :class => css_class %>
         <% end %>
       </section>
+      <% end %>
       <%= content_tag :h1, yield(:title) if show_title? %>
       <%= yield %>
     </div>

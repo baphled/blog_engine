@@ -277,6 +277,11 @@ describe "Navigation" do
       it "allows authors to invite others to collaborate on an article"
       it "allows originating authors to remove collaborators"
     end
+    
+  end
+  
+  context "viewing collections of articles by tags" do
+    it "does not include articles that are not publicised when generating the tag cloud"
   end
   
   context "viewing statistics on an article" do
@@ -306,7 +311,6 @@ describe "Navigation" do
   end
   
   context "displaying articles with a given category" do
-    it "displays a chronological list of articles that are in that category"
   end
   
   context "displaying articles with a given tag" do
@@ -327,11 +331,9 @@ describe "Navigation" do
       end
       
       # a user views the tag and sees two articles
-      date = Date.today
-      
       visit blog_engine_published_articles_by_tag_path(:tag => 'edge rails')
-      article.tags.should eql 'edge rails'
-      save_and_open_page
+      page.should have_content 'edge rails'
     end
+
   end
 end
