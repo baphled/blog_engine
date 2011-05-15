@@ -18,6 +18,9 @@ gem 'bson_ext'
 gem 'mongoid_taggable'
 gem 'mongoid_slug', :require => 'mongoid/slug'
 
+gem "compass", ">= 0.10.4"
+gem "compass-960-plugin", :git => "git://github.com/chriseppstein/compass-960-plugin.git"
+
 gem 'rdiscount'
 gem 'redcarpet'
 

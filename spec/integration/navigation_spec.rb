@@ -189,6 +189,28 @@ describe "Navigation" do
       end
     end
     
+    it "only allows tags with alphanumeric values and split by commas" do
+      visit new_blog_engine_category_path
+      
+      fill_in 'Title', :with => 'My Category'
+      
+      click_button 'Save Category'
+      
+      visit new_blog_engine_article_path
+      
+      fill_in 'Title', :with => 'My new article'
+      fill_in 'Content', :with => 'This is my article'
+      fill_in 'Tags', :with => 'my stuff, random, rails 3.1'
+      
+      check 'My Category'
+      
+      click_button 'Save Draft'
+      
+      within('div.field_with_errors span.error') do
+        page.should have_content "is invalid"
+      end
+    end
+    
     it "does not display drafts until they are published" do
       visit new_blog_engine_category_path
       
@@ -288,6 +310,28 @@ describe "Navigation" do
   end
   
   context "displaying articles with a given tag" do
-    it "displays a chronological list of articles that are in that tag"
+    it "displays a chronological list of articles that are in that tag" do
+      # two articles are published with the same tag
+      @author = BlogEngine::Author.create!(:first_name => "Scooby", :last_name => "Doo", :email => Faker::Internet.email, :password => 'foobar')
+      @articles = []
+      2.times do |number|
+        article = @author.articles.create!(
+          :title => Faker::Lorem.sentence(1),
+          :tags => 'edge rails',
+          :content => Faker::Lorem.sentence(10),
+          :published_at => Date.today,
+          :published => true
+        )
+        article.should be_published
+        @articles << article
+      end
+      
+      # a user views the tag and sees two articles
+      date = Date.today
+      
+      visit blog_engine_published_articles_by_tag_path(:tag => 'edge rails')
+      article.tags.should eql 'edge rails'
+      save_and_open_page
+    end
   end
 end

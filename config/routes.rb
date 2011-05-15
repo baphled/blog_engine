@@ -9,6 +9,11 @@ Rails.application.routes.draw do
     end
   end
   
+  match '/blog-engine/tag/:tag',
+    :controller => 'blog_engine/articles',
+    :action => :tag,
+    :as => :blog_engine_published_articles_by_tag
+  
   match '/blog-engine/:year/:month/:slug',
     :controller => 'blog_engine/articles',
     :action => :article,

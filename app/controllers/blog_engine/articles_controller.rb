@@ -1,6 +1,7 @@
 module BlogEngine
   class ArticlesController < ApplicationController
-
+    before_filter :find_tags
+    
     def index
       @drafts = BlogEngine::Article.drafts
       @published = BlogEngine::Article.publicised
@@ -56,7 +57,20 @@ module BlogEngine
         .first || not_found
     end
     
+    
+    def tag
+      @articles = BlogEngine::Article
+        .tagged_with_any(params[:tag])
+        .publicised
+      render :articles
+    end
+    
     protected
+    
+    def find_tags
+      @tag_cloud = BlogEngine::Article.tags_with_weight
+    end
+    
     def not_found
       raise ActionController::RoutingError.new('Not Found')
     end

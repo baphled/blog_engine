@@ -23,6 +23,7 @@ module BlogEngine
     tags_separator ', '
     
     validates_presence_of :title
+    validates_format_of :tags, with: /^[a-zA-Z0-9,\s+]+$/, :allow_blank => true
     
     scope :drafts, where(:published => false)
     scope :publicised, where(:published => true)
