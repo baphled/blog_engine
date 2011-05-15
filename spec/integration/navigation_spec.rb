@@ -145,29 +145,6 @@ describe "Navigation" do
       page.should have_content "My new article"
     end
     
-    it "redirects me if the I try to view the article directly" do
-      pending 'Yet to implement'
-      visit new_blog_engine_category_path
-      
-      fill_in 'Title', :with => 'My Category'
-      
-      click_button 'Save Category'
-      
-      visit new_blog_engine_article_path
-      
-      fill_in 'Title', :with => 'My new article'
-      fill_in 'Content', :with => 'This is my article'
-      fill_in 'Tags', :with => 'my stuff, random'
-      
-      check 'My Category'
-      
-      click_button 'Save Draft'
-      
-      visit blog_engine_published_article_path :slug => 'my-new-article'
-      
-      # Should get a 404
-    end
-    
     it "it displays drafts in the drafts section" do
       visit new_blog_engine_category_path
       
@@ -212,9 +189,78 @@ describe "Navigation" do
       end
     end
     
-    it "does not display drafts until they are published"
+    it "does not display drafts until they are published" do
+      visit new_blog_engine_category_path
+      
+      fill_in 'Title', :with => 'My Category'
+      
+      click_button 'Save Category'
+      
+      visit new_blog_engine_article_path
+      
+      fill_in 'Title', :with => 'My new article'
+      fill_in 'Content', :with => 'This is my article'
+      fill_in 'Tags', :with => 'my stuff, random'
+      
+      check 'My Category'
+      
+      click_button 'Save Draft'
+
+      page.should have_content "Created new draft"
+      
+      date = Date.today
+      lambda {
+        visit blog_engine_published_article_path :year => date.year, :month => date.month, :date => date.day, :slug => 'my-new-article'
+      }.should raise_error(ActionController::RoutingError)
+    end
+    
     it "can set an articles publication date"
     it "should use gists to code examples"
+    
+    context "adding comments" do
+      it "allows a user to make a comment" do
+        pending 'Yet to implement'
+        # an article is published
+        # someone view the article
+        # write a comment
+        # and the submit it
+        # sign up or sign in if not already
+        # the comment is displayed
+      end
+      
+      it "allows authors to mediate comments"
+      
+      it "comments are displayed dynamically" do
+        pending 'Yet to implement'
+        # an article is published
+        # someone writes a comment
+        # and they submit it
+        # I am viewing the article
+        # the comment is displayed
+      end
+      
+      it "allows a comment to be nested within another comment" do
+        pending 'Yet to implement'
+        # an article is published
+        # someone writes a comment
+        # and they submit it
+        # I am viewing the article
+        # the comment is displayed
+        # i reply to the comment
+        # and the response is displayed
+      end
+    end
+    
+    context "collaborating with others" do
+      it "allows authors to invite others to collaborate on an article"
+      it "allows originating authors to remove collaborators"
+    end
+  end
+  
+  context "viewing statistics on an article" do
+    it "tracks the amount of unique views on an article"
+    it "tracks the most searched for terms on the blog"
+    it "tracks the most read articles"
   end
   
   context "draft versions" do

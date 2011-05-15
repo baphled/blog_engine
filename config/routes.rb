@@ -9,7 +9,10 @@ Rails.application.routes.draw do
     end
   end
   
-  match '/blog-engine/:year/:month/:slug', :controller => 'blog_engine/articles', :action => :article, :as => :blog_engine_published_article
+  match '/blog-engine/:year/:month/:slug',
+    :controller => 'blog_engine/articles',
+    :action => :article,
+    :as => :blog_engine_published_article
   
   root :to => "blog_engine/articles#index"
 end

@@ -53,7 +53,12 @@ module BlogEngine
         .where(:published_at.lte => date.end_of_month)
         .where(:slug => params[:slug])
         .publicised
-        .first
+        .first || not_found
+    end
+    
+    protected
+    def not_found
+      raise ActionController::RoutingError.new('Not Found')
     end
   end
 end
