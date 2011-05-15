@@ -10,274 +10,18 @@ describe "Navigation" do
   
   context "creating a category" do
     before(:each) do
-      @author = BlogEngine::Author.create!(:first_name => 'Scooby',
-        :last_name => "Doo",
-        :email => Faker::Internet.email,
-        :password => 'foobar')
-      visit 'authors/sign_in'
-      fill_in 'Email', :with => @author.email
-      fill_in 'Password', :with => @author.password
-
-      click_button 'Sign in'
+      @author = create_author
+      author_sign_in
     end
     
     it "allows us to create new categories" do
-      visit new_blog_engine_category_path
-      
-      fill_in 'Title', :with => 'My Category'
-      
-      click_button 'Save Category'
+      create_category 'My Category'
       
       visit new_blog_engine_article_path
       
       page.should have_content "Categories"
       page.should have_content "My Category"
     end
-  end
-  
-  context "creating a drafted article as a signed in user" do
-    
-    before(:each) do
-      @author = BlogEngine::Author.create!(:first_name => 'Scooby',
-        :last_name => "Doo",
-        :email => Faker::Internet.email,
-        :password => 'foobar')
-      
-      visit 'authors/sign_in'
-      fill_in 'Email', :with => @author.email
-      fill_in 'Password', :with => @author.password
-      
-      click_button 'Sign in'
-    end
-    
-    it "creating a new draft" do
-      visit new_blog_engine_article_path
-      
-      fill_in 'Title', :with => 'My new article'
-      fill_in 'Content', :with => """
-      This is my article
-      I love to write
-      """
-      
-      click_button 'Save Draft'
-      
-      within("section#drafts") do
-        page.should have_content "My new article"
-      end
-    end
-    
-    it "stores the authors name automatically" do
-      visit new_blog_engine_article_path
-
-      fill_in 'Title', :with => 'My new article'
-      fill_in 'Content', :with => """
-      This is my article
-      I love to write
-      """
-      
-      click_button 'Save Draft'
-      
-      within("section#drafts") do
-        page.should have_content "Author"
-        page.should have_content "Scooby Doo"
-      end
-    end
-    it "can set an articles category" do
-      visit new_blog_engine_category_path
-      
-      fill_in 'Title', :with => 'My Category'
-      
-      click_button 'Save Category'
-      
-      visit new_blog_engine_article_path
-      
-      fill_in 'Title', :with => 'My new article'
-      fill_in 'Content', :with => 'This is my article'
-      
-      check 'My Category'
-      
-      click_button 'Save Draft'
-      
-      page.should have_content "My Category"
-    end
-    
-    it "displays the articles tags" do
-      visit new_blog_engine_category_path
-      
-      fill_in 'Title', :with => 'My Category'
-      
-      click_button 'Save Category'
-      
-      visit new_blog_engine_article_path
-      
-      fill_in 'Title', :with => 'My new article'
-      fill_in 'Content', :with => 'This is my article'
-      fill_in 'Tags', :with => 'my stuff, random'
-      
-      check 'My Category'
-      
-      click_button 'Save Draft'
-      
-      page.should have_content "my stuff, random"
-    end
-    
-    it "has a link that contains the permalink" do
-      visit new_blog_engine_category_path
-      
-      fill_in 'Title', :with => 'My Category'
-      
-      click_button 'Save Category'
-      
-      visit new_blog_engine_article_path
-      
-      fill_in 'Title', :with => 'My new article'
-      fill_in 'Content', :with => 'This is my article'
-      fill_in 'Tags', :with => 'my stuff, random'
-      
-      check 'My Category'
-      
-      click_button 'Publish'
-      
-      page.should have_content "My new article was published"
-      
-      date = Date.today
-      visit blog_engine_published_article_path :year => date.year, :month => date.month, :date => date.day, :slug => 'my-new-article'
-      page.should have_content "My new article"
-    end
-    
-    it "it displays drafts in the drafts section" do
-      visit new_blog_engine_category_path
-      
-      fill_in 'Title', :with => 'My Category'
-      
-      click_button 'Save Category'
-      
-      visit new_blog_engine_article_path
-      
-      fill_in 'Title', :with => 'My new article'
-      fill_in 'Content', :with => 'This is my article'
-      fill_in 'Tags', :with => 'my stuff, random'
-      
-      check 'My Category'
-      
-      click_button 'Save Draft'
-      
-      within("section#drafts") do
-        page.should have_content "My new article"
-      end
-    end
-    
-    it "displays published articles in the published section" do
-      visit new_blog_engine_category_path
-      
-      fill_in 'Title', :with => 'My Category'
-      
-      click_button 'Save Category'
-      
-      visit new_blog_engine_article_path
-      
-      fill_in 'Title', :with => 'My new article'
-      fill_in 'Content', :with => 'This is my article'
-      fill_in 'Tags', :with => 'my stuff, random'
-      
-      check 'My Category'
-      
-      click_button 'Publish'
-      
-      within("section#published") do
-        page.should have_content "My new article"
-      end
-    end
-    
-    it "only allows tags with alphanumeric values and split by commas" do
-      visit new_blog_engine_category_path
-      
-      fill_in 'Title', :with => 'My Category'
-      
-      click_button 'Save Category'
-      
-      visit new_blog_engine_article_path
-      
-      fill_in 'Title', :with => 'My new article'
-      fill_in 'Content', :with => 'This is my article'
-      fill_in 'Tags', :with => 'my stuff, random, rails 3.1'
-      
-      check 'My Category'
-      
-      click_button 'Save Draft'
-      
-      within('div.field_with_errors span.error') do
-        page.should have_content "is invalid"
-      end
-    end
-    
-    it "does not display drafts until they are published" do
-      visit new_blog_engine_category_path
-      
-      fill_in 'Title', :with => 'My Category'
-      
-      click_button 'Save Category'
-      
-      visit new_blog_engine_article_path
-      
-      fill_in 'Title', :with => 'My new article'
-      fill_in 'Content', :with => 'This is my article'
-      fill_in 'Tags', :with => 'my stuff, random'
-      
-      check 'My Category'
-      
-      click_button 'Save Draft'
-
-      page.should have_content "Created new draft"
-      
-      date = Date.today
-      lambda {
-        visit blog_engine_published_article_path :year => date.year, :month => date.month, :date => date.day, :slug => 'my-new-article'
-      }.should raise_error(ActionController::RoutingError)
-    end
-    
-    it "can set an articles publication date"
-    it "should use gists to code examples"
-    
-    context "adding comments" do
-      it "allows a user to make a comment" do
-        pending 'Yet to implement'
-        # an article is published
-        # someone view the article
-        # write a comment
-        # and the submit it
-        # sign up or sign in if not already
-        # the comment is displayed
-      end
-      
-      it "allows authors to mediate comments"
-      
-      it "comments are displayed dynamically" do
-        pending 'Yet to implement'
-        # an article is published
-        # someone writes a comment
-        # and they submit it
-        # I am viewing the article
-        # the comment is displayed
-      end
-      
-      it "allows a comment to be nested within another comment" do
-        pending 'Yet to implement'
-        # an article is published
-        # someone writes a comment
-        # and they submit it
-        # I am viewing the article
-        # the comment is displayed
-        # i reply to the comment
-        # and the response is displayed
-      end
-    end
-    
-    context "collaborating with others" do
-      it "allows authors to invite others to collaborate on an article"
-      it "allows originating authors to remove collaborators"
-    end
-    
   end
   
   context "viewing collections of articles by tags" do
@@ -311,6 +55,7 @@ describe "Navigation" do
   end
   
   context "displaying articles with a given category" do
+    it "displays a chronological list of articles that are in that category"
   end
   
   context "displaying articles with a given tag" do
@@ -331,6 +76,8 @@ describe "Navigation" do
       end
       
       # a user views the tag and sees two articles
+      date = Date.today
+      
       visit blog_engine_published_articles_by_tag_path(:tag => 'edge rails')
       page.should have_content 'edge rails'
     end
