@@ -1,0 +1,39 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+/* line 7, ../../app/stylesheets/screen.scss */
+section#tag_cloud {
+  float: right;
+  display: inline-block;
+  font-size: 1em;
+  line-height: 1.2em;
+}
+/* line 5, ../../../../../../.rvm/gems/ruby-1.9.2-p180/gems/compass-0.11.1/frameworks/compass/stylesheets/compass/utilities/general/_tag-cloud.scss */
+section#tag_cloud .xxs, section#tag_cloud .xs, section#tag_cloud .s, section#tag_cloud .l, section#tag_cloud .xl, section#tag_cloud .xxl {
+  line-height: 1.2em;
+}
+/* line 7, ../../../../../../.rvm/gems/ruby-1.9.2-p180/gems/compass-0.11.1/frameworks/compass/stylesheets/compass/utilities/general/_tag-cloud.scss */
+section#tag_cloud .xxs {
+  font-size: 0.5em;
+}
+/* line 9, ../../../../../../.rvm/gems/ruby-1.9.2-p180/gems/compass-0.11.1/frameworks/compass/stylesheets/compass/utilities/general/_tag-cloud.scss */
+section#tag_cloud .xs {
+  font-size: 0.667em;
+}
+/* line 11, ../../../../../../.rvm/gems/ruby-1.9.2-p180/gems/compass-0.11.1/frameworks/compass/stylesheets/compass/utilities/general/_tag-cloud.scss */
+section#tag_cloud .s {
+  font-size: 0.75em;
+}
+/* line 13, ../../../../../../.rvm/gems/ruby-1.9.2-p180/gems/compass-0.11.1/frameworks/compass/stylesheets/compass/utilities/general/_tag-cloud.scss */
+section#tag_cloud .l {
+  font-size: 1.333em;
+}
+/* line 15, ../../../../../../.rvm/gems/ruby-1.9.2-p180/gems/compass-0.11.1/frameworks/compass/stylesheets/compass/utilities/general/_tag-cloud.scss */
+section#tag_cloud .xl {
+  font-size: 1.5em;
+}
+/* line 17, ../../../../../../.rvm/gems/ruby-1.9.2-p180/gems/compass-0.11.1/frameworks/compass/stylesheets/compass/utilities/general/_tag-cloud.scss */
+section#tag_cloud .xxl {
+  font-size: 2em;
+}

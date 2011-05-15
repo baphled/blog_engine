@@ -1,0 +1,29 @@
+<article>
+  <h1>
+    <% if article.published? %>
+      <%= link_to article.title, blog_engine_published_article_path(:year => article.published_at.year, :month => article.published_at.month, :slug => article.slug) %>
+    <% else %>
+      <%= link_to article.title, blog_engine_article_path(:id => article.id) %>
+    <% end %>
+  </h1>
+  <p>Author: <%= article.author.full_name %></p>
+  <p><%= article.published_at.to_s :long %></p>
+  
+  <section>
+    <%=raw article.content %>
+  </section>
+
+  <% unless article.categories.empty? %>
+    Categories:
+    <% article.categories.each do |category| %>
+    <ul>
+      <li><%= category.title %></li>
+    </ul>
+    <% end %>
+  <% end %>
+  <p>Tags: 
+    <% article.tags.split(', ').each do |tag| %>
+      <%= link_to tag, blog_engine_published_articles_by_tag_path(:tag => tag)  %>
+    <% end %>
+  </p>
+</article>
