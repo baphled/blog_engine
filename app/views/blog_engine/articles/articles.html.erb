@@ -1,3 +1,4 @@
 <% @articles.each do |article|%>
-  <%= render :partial => 'article', :locals => {:article => article} %>
+  <%= render :partial => '/blog_engine/shared/article', :locals => {:article => article} %>
+  <hr />
 <% end %>

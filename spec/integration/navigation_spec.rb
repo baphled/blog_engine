@@ -8,46 +8,10 @@ describe "Navigation" do
     ::Rails.application.should be_a(Dummy::Application)
   end
   
-  context "creating a category" do
-    before(:each) do
-      @author = create_author
-      author_sign_in
-    end
-    
-    it "allows us to create new categories" do
-      create_category 'My Category'
-      
-      visit new_blog_engine_article_path
-      
-      page.should have_content "Categories"
-      page.should have_content "My Category"
-    end
-  end
-  
-  context "viewing collections of articles by tags" do
-    it "does not include articles that are not publicised when generating the tag cloud"
-  end
-  
   context "viewing statistics on an article" do
     it "tracks the amount of unique views on an article"
     it "tracks the most searched for terms on the blog"
     it "tracks the most read articles"
-  end
-  
-  context "draft versions" do
-    it "can not be viewed by guest users"
-    it "does not display drafts on the main page"
-    it "allows us to version our draft"
-    it "overwrites as the current draft with a previous version"
-  end
-  
-  context "editing an article" do
-    it "should allow me to preview the article"
-  end
-  
-  context "published articles" do
-    it "does not display an article until it is published"
-    it "published articles perma-link can not change"
   end
   
   context "displaying articles with a given year and month" do

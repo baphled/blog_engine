@@ -10,7 +10,7 @@ module BlogEngine
     field :last_name
     
     has_many :articles, :class_name => 'BlogEngine::Article'
-    
+
     def full_name
       "#{self.first_name} #{self.last_name}"
     end

@@ -57,6 +57,10 @@ module BlogEngine
         .first || not_found
     end
     
+    def articles
+      @articles = BlogEngine::Article.publicised
+    end
+    
     
     def tag
       @articles = BlogEngine::Article

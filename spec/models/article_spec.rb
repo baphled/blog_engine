@@ -27,7 +27,11 @@ describe BlogEngine::Article do
     @article.should respond_to :slug
   end
   
-  it "must have an author"
+  it "must have an author" do
+    @article.should be_invalid
+    @article.errors_on(:author).should eql ["can't be blank"]
+  end
+  
   context "publishing an article" do
     before(:each) do
       @article.publicise

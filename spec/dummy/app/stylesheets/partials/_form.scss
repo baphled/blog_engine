@@ -1,0 +1,74 @@
+@charset "utf-8";
+@import "compass/utilities/lists/horizontal-list";
+@import "blueprint/form";
+@import "compass/utilities/lists/bullets";
+
+@mixin blueprint-form-layout {
+  label {
+    font-weight: normal;
+    text-transform:capitalize;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  
+  fieldset {
+    padding: 1.4em;
+    margin: 0 0 0 0;
+  }
+  
+  legend {
+    font-weight: bold;
+    font-size: 1.2em;
+  }
+  input:-webkit-input-placeholder,
+  textarea:-webkit-input-placeholder {
+    color: #CFCFCF;
+  }
+  input {
+    &.text,
+    &.title,
+		&[type=tel],
+    &[type=email],
+    &[type=text],
+    &[type=password],
+    &[type="date"],
+    &[type="url"] {
+      padding: 10px;
+      margin-top:4px;
+      font-size:20px;
+      width:300px;
+      color:#3F5058;
+      border: none;
+    }
+    &.title {
+      font-size: 1.5em;
+    }
+    &[type=checkbox],
+    &.checkbox,
+    &[type=radio],
+    &.radio {
+      position: relative;
+      top: 0.25em;
+    }
+  }
+  textarea {
+    display: block;
+    padding: 0 13px;
+    width: 400px;
+    max-width: 400px;
+    height: 130px;
+    max-height: 130px;
+    font-size: 17px;
+    color: #3F5058;
+    border: none;
+  }
+  select {
+    margin: 0.5em 0;
+  }
+}
+
+@mixin blueprint-form {
+  @include blueprint-form-borders;
+  @include blueprint-form-sizes;
+  @include blueprint-form-layout;
+}

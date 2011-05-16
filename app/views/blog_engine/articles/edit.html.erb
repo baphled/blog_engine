@@ -3,8 +3,9 @@
   <%= f.input :content, :as => :text, :input_html => { :value => @article.content_source } %>
   <%= f.input :tags %>
 
-  <%= f.association :categories, :collection => BlogEngine::Category.find(:all), :prompt => 'Select Category', :as => :check_boxes %>
-  
+  <fieldset id="categories">
+    <%= f.association :categories, :collection => BlogEngine::Category.find(:all), :prompt => 'Select Category', :as => :check_boxes %>
+  </fieldset>
   <%= f.button :submit, 'Update Draft' %>
   <%= f.submit 'Publish' %>
 <% end %>

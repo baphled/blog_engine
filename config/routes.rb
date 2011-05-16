@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
   devise_for :authors, :class_name => 'BlogEngine::Author', :controller => 'blog_engine/author'
-  match '/blog-engine', :controller => 'blog_engine/articles', :action => :articles
+  match '/blog-engine', :controller => 'blog_engine/articles', :action => :articles, :as => :blog_engine_published_articles
   
   authenticate :author do
     resource 'blog-engine', :controller => 'blog_engine/engine', :as => :blog_engine, :only => [:index] do
-      resources :articles, :controller => 'blog_engine/articles'
+      resources :articles, :controller => 'blog_engine/articles' do
+        resources :comments, :controller => 'blog_engine/comments'
+      end
       resources :categories, :controller => 'blog_engine/categories'
     
     end
@@ -20,5 +22,6 @@ Rails.application.routes.draw do
     :action => :article,
     :as => :blog_engine_published_article
   
-  root :to => "blog_engine/articles#index"
+
+  root :to => "blog_engine/main#index"
 end

@@ -3,18 +3,16 @@ require 'spec_helper'
 describe "Creating drafts" do
   include Capybara
   include Rails.application.routes.url_helpers
-  
-  before(:each) do
-    @author = create_author
-    author_sign_in
+    
+  context "editing an article" do
+    it "should allow me to preview the article"
   end
   
-  it "can not be viewed by guest users"
-  it "does not display drafts on the main page"
-  it "allows us to version our draft"
-  it "overwrites as the current draft with a previous version"
-  
-  context "creating a drafted article as a signed in user" do
+  context "creating a drafted article" do
+    before(:each) do
+      @author = create_author
+      author_sign_in
+    end
     
     it "creating a new draft" do
       submit_draft "My new article", """
@@ -83,12 +81,18 @@ describe "Creating drafts" do
     
     it "can set an articles publication date"
     it "should use gists to code examples"
-
-    context "collaborating with others" do
-      it "allows authors to invite others to collaborate on an article"
-      it "allows originating authors to remove collaborators"
-    end
-    
   end
   
+  context "draft versioning" do
+    it "allows us to version our draft"
+    it "does not display drafts on the main page"
+    it "allows us to version our draft"
+    it "overwrites as the current draft with a previous version"
+
+  end
+  
+  context "collaborating with others" do
+    it "allows authors to invite others to collaborate on an article"
+    it "allows originating authors to remove collaborators"
+  end
 end

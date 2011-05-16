@@ -1,1 +1,4 @@
-<h1>BlogEngine Main index</h1>
+<% @articles.each do |article|%>
+  <%= render :partial => '/blog_engine/shared/article', :locals => {:article => article} %>
+  <hr />
+<% end %>

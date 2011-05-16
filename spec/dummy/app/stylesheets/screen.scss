@@ -3,11 +3,40 @@
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
 @import "compass/utilities/general/tag-cloud";
+@import "blueprint";
+
+// Import the non-default scaffolding module.
+@import "blueprint/scaffolding";
+
+@import "compass/layout";
+@import "compass/utilities";
+
+@import "partials/form";
+
+@import "compass/typography/lists/horizontal-list";
+
+// To generate css equivalent to the blueprint css but with your
+// configuration applied, uncomment:
+@include blueprint;
+$base_fontsize: 1.2em;
 
 section#tag_cloud {
-  float: right;
-  display: inline-block;
-  @include tag-cloud;
+  background-color: #FFF;
+  border: black thin solid;
+  @include tag-cloud($base_fontsize);
 }
 
 
+body {
+  @include blueprint(true);
+  menu {
+    ol {
+      @include horizontal-list-container;
+        li {
+          @include horizontal-list-item;
+        }
+    }
+    background-color: #FFF;
+    border: black thin solid;
+  }
+}

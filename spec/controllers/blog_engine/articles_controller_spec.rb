@@ -15,7 +15,7 @@ describe BlogEngine::ArticlesController do
   
   describe "POST, create" do
     before(:each) do
-      @article = BlogEngine::Article.new :title => "My title", :content => "My content", :tags => "foo, bar, baz"
+      @article = @author.articles.new :title => "My title", :content => "My content", :tags => "foo, bar, baz"
       controller.current_author.articles.stub(:new).and_return @article
     end
     

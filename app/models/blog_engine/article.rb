@@ -17,17 +17,18 @@ module BlogEngine
     
     slug :title
     
+    embeds_many :comments, :class_name => 'BlogEngine::Comment'
+    
     has_and_belongs_to_many :categories, :class_name => 'BlogEngine::Category'
     belongs_to :author, :class_name => 'BlogEngine::Author'
     
     tags_separator ', '
     
-    validates_presence_of :title
+    validates_presence_of :title, :author
     validates_format_of :tags, with: /^[a-zA-Z0-9,\s+]+$/, :allow_blank => true
     
-    scope :drafts, where(:published => false)
-    scope :publicised, where(:published => true)
-    
+    scope :drafts, where(:published => false).order_by(:published_at.desc)
+    scope :publicised, where(:published => true).order_by(:published_at.desc)
     
     def self.published?
       self.published
