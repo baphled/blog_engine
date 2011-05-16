@@ -27,8 +27,6 @@ describe "Making comments" do
     page.should have_content "I really like this article"
   end
   
-  it "allows authors to mediate comments"
-  
   it "comments are displayed dynamically" do
     pending 'Yet to implement'
     # an article is published

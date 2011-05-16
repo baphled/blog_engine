@@ -1,0 +1,45 @@
+<article>
+  <h1>
+    <% if article.published? %>
+      <%= link_to article.title, blog_engine_published_article_path(:year => article.published_at.year, :month => article.published_at.month, :slug => article.slug) %>
+    <% else %>
+      <%= link_to article.title, blog_engine_article_path(:id => article.id) %>
+    <% end %>
+  </h1>
+  <p>Author: <%= article.author.full_name %></p>
+  <p><%= article.published_at.to_s :long %></p>
+  
+  <section>
+    <%=raw article.content %>
+  </section>
+  <p class="article-info">
+  <% unless article.categories.empty? %>
+    Posted in:
+    <% article.categories.each do |category| %>
+      <%= category.title %>
+      <%= ", " unless article.categories.last.title == category.title %>
+    <% end %> | 
+  <% end %>
+  Tags: 
+    <% article.tags.split(', ').each do |tag| %>
+      <%= link_to tag, blog_engine_published_articles_by_tag_path(:tag => tag)  %>
+    <% end %>
+  </p>
+  <% unless @comment.nil? %>
+    <% if not article.comments.empty? %>
+      <% article.comments.each do |comment| %>
+        <section>
+          <%= comment.name %> wrote:<br />
+          <%= comment.body %>
+        </section>
+      <% end %>
+    <% end %>
+    <fieldset class="comments">
+      <%= simple_form_for @comment, :url => blog_engine_article_comments_path(:article_id => article.id), :html => {:method => :post} do |f| %>
+        <%= f.input :name %>
+        <%= f.input :body, :as => :text %>
+        <%= f.button :submit %>
+      <% end %>
+    </fieldset>
+  <% end %>
+</article>

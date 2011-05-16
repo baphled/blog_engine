@@ -2,8 +2,8 @@
 # project in your rails apps through git.
 Gem::Specification.new do |s|
   s.name = "blog_engine"
-  s.summary = "Insert BlogEngine summary."
-  s.description = "Insert BlogEngine description."
+  s.summary = "A Rails Engine based blogging system"
+  s.description = "Adding a blog to your application shouldn't be a hassle"
   s.files = Dir["{app,lib,config}/**/*"] + ["MIT-LICENSE", "Rakefile", "Gemfile", "README.rdoc"]
   s.version = "0.0.1"
   
