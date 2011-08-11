@@ -8,6 +8,8 @@ Gem::Specification.new do |s|
   s.version = "0.0.1"
   
   s.add_dependency('mongoid')
+  s.add_dependency('mongoid_taggable')
+  s.add_dependency('mongoid_slug')
   s.add_dependency('bson_ext')
   s.add_dependency('devise')
   s.add_dependency('redcarpet')
