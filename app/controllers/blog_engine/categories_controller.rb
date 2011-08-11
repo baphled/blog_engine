@@ -1,5 +1,5 @@
 module BlogEngine
-  class CategoriesController < ApplicationController
+  class CategoriesController < BlogEngine::ApplicationController
     
     def new
       @category = BlogEngine::Category.new

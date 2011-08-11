@@ -1,5 +1,5 @@
 module BlogEngine
-  class ArticlesController < ApplicationController
+  class ArticlesController < BlogEngine::ApplicationController
     before_filter :find_tags
     
     def index

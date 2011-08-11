@@ -1,5 +1,5 @@
 module BlogEngine
-  class CommentsController < ApplicationController
+  class CommentsController < BlogEngine::ApplicationController
     
     def create
       @article = BlogEngine::Article.find params[:article_id]
