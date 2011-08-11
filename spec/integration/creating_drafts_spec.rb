@@ -79,7 +79,15 @@ describe "Creating drafts" do
       }.should raise_error(ActionController::RoutingError)
     end
     
-    it "can set an articles publication date"
+    it "can set an articles publication date" do
+      create_category 'My Category'
+      submit_draft "My new article", "This is my blog", 'my stuff, random', nil, Date.today
+      
+      page.should have_content "Created new draft"
+      click_link 'Show'
+      page.should have_content "Published at: #{Date.today.to_s :long}"
+    end
+    
     it "should use gists to code examples"
   end
   

@@ -19,7 +19,7 @@ def create_category title = nil
   click_button 'Save Category'
 end
 
-def submit_draft title = "My new article", content = "this is a cool blog", tags = nil, categories = nil
+def submit_draft title = "My new article", content = "this is a cool blog", tags = nil, categories = nil, publish_date = Date.tomorrow.next_week
   visit new_blog_engine_article_path
   fill_in 'Title', :with => title
   fill_in 'Content', :with => content
@@ -27,6 +27,8 @@ def submit_draft title = "My new article", content = "this is a cool blog", tags
   unless tags.nil?
      fill_in 'Tags', :with => tags
   end
+  
+  fill_in 'Published at', :with => publish_date.to_s
   
   unless categories.nil?
      categories.split(', ').each do |category|

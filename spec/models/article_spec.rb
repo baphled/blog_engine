@@ -44,7 +44,6 @@ describe BlogEngine::Article do
     it "has a published at date" do
       @article.should respond_to :published_at
     end
-    
   end
   
   describe "markdown content" do

@@ -5,7 +5,8 @@
 <article>
   <p>
     Author: <%= @article.author.full_name %><br />
-    Created at: <%= @article.updated_at.to_s :long %>
+    Created at: <%= @article.updated_at.to_s :long %><br />
+    Published at: <%= @article.published_at.to_s :long %>
   </p>
 
   <%=raw @article.content %>

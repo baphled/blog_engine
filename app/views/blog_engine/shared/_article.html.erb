@@ -7,7 +7,7 @@
     <% end %>
   </h1>
   <p>Author: <%= article.author.full_name %></p>
-  <p><%= article.published_at.to_s :long %></p>
+  <p>Published at: <%= article.published_at.to_s :long %></p>
   
   <section>
     <%=raw article.content %>

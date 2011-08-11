@@ -2,7 +2,8 @@
   <%= f.input :title %>
   <%= f.input :content, :as => :text %>
   <%= f.input :tags %>
-
+  <%= f.input :published_at, :input_html => { :class => :datepicker } %>
+  
   <fieldset id="categories">
     <%= f.association :categories, :collection => BlogEngine::Category.find(:all), :prompt => 'Select Category', :as => :check_boxes %>
   </fieldset>

@@ -2,5 +2,6 @@
 // This file is automatically included by javascript_include_tag :defaults
 $(document).ready(function() {
   $('#blog_engine_article_content').markItUp(mySettings);
+  $('#blog_engine_article_published_at').datepicker({ dateFormat: 'dd-mm-yy', gotoCurrent: true, changeYear: true });
 });
 
