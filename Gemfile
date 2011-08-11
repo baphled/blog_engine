@@ -32,11 +32,12 @@ group :development, :test do
   gem 'timecop', :git => "https://github.com/liveh2o/timecop.git"
   gem 'faker'
   
+  gem 'autotest-growl'
   gem 'growl'
   gem 'guard'
   gem 'guard-bundler'
   gem 'guard-rspec'
   gem 'rb-fsevent'
-
+  gem 'ZenTest'
   gem "launchy"
 end
