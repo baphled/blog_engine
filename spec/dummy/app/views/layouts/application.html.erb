@@ -2,7 +2,7 @@
 <html>
   <head>
     <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
-    <%= stylesheet_link_tag "application", "jquery-ui", 'screen', 'token-input', 'token-input-facebook' %>
+    <%= stylesheet_link_tag "application", "jquery-ui", "article", 'screen', 'token-input', 'token-input-facebook' %>
     
     <link rel="stylesheet" type="text/css" href="/javascripts/markitup/skins/markitup/style.css" />
     <link rel="stylesheet" type="text/css" href="/javascripts/markitup/sets/markdown/style.css" />
@@ -35,7 +35,7 @@
       <% end %>
       <%= content_tag :h1, yield(:title) if show_title? %>
       
-      <section id="articles" class="column prepend-2 span-18 append-2">
+      <section id="articles" class="column prepend-1 span-20 append-1">
         <%= yield %>
       </section>
     

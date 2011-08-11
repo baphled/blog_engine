@@ -18,9 +18,11 @@ a {
   overflow: hidden;
 }
 
-#articles {
-  background-color: #FFF;
+#articles, #drafts, #published {
+  background-color: white;
   border: solid 1px black;
+  margin: 28px 0;
+  padding: 0 28px;
 }
 
 #container {

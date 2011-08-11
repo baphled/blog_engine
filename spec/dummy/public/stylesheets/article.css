@@ -1,0 +1,13 @@
+#articles article {
+  border-bottom: 1px solid #CCC;
+}
+
+form div.string, form div.text {
+  border: 1px solid #CCC;
+  margin: 10px;
+  padding: 2px;
+}
+
+#categories .check_boxes {
+  padding: 5px;
+}
