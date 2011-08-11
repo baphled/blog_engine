@@ -6,7 +6,7 @@
   <p>
     Author: <%= @article.author.full_name %><br />
     Created at: <%= @article.updated_at.to_s :long %><br />
-    Published at: <%= @article.published_at.to_s :long %>
+    Published at: <%= @article.published_at.to_s :long if @article.published_at.present? %>
   </p>
 
   <%=raw @article.content %>
