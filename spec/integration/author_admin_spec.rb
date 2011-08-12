@@ -4,7 +4,7 @@ describe "Author Admininstration" do
   include Capybara
   include Rails.application.routes.url_helpers
   
-  context "managing account" do
+  context "menu" do
     before(:each) do
       create_author
       author_sign_in
@@ -20,11 +20,14 @@ describe "Author Admininstration" do
       click_button 'Update'
     end
     
-    it "allows a user to sign out"
-  end
-  
-  context "menu" do
-    it "allows me to sign out"
+    it "allows a user to sign out" do
+      page.should have_content "Log out"
+      click_link 'Log out'
+      
+      page.should have_content "Signed out successfully."
+      page.should_not have_selector :menu
+    end
+
     it "allows me to manage my articles"
     it "allow me to view my drafted articles"
     it "allow me to view my published articles"
