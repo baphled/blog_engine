@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for?(:title) ? yield(:title) : "BlogEngine" %></title>
+    <%= stylesheet_link_tag "application", "jquery-ui", "article", 'screen', 'token-input', 'token-input-facebook' %>
+    
+    <link rel="stylesheet" type="text/css" href="/javascripts/markitup/skins/markitup/style.css" />
+    <link rel="stylesheet" type="text/css" href="/javascripts/markitup/sets/markdown/style.css" />
+    
+    <%= javascript_include_tag 'jquery', 'jquery-ui', 'rails', 'jquery.tokeninput', 'markitup/jquery.markitup', 'markitup/sets/markdown/set' %>
+    
+    <%= javascript_include_tag 'application' %>
+    <%= csrf_meta_tag %>
+    <%= yield(:head) %>
+  </head>
+  <body class="showgrid">
+    <% if author_signed_in? %>
+    <menu>
+      <ol>
+        <li>
+          <%= link_to "Published articles", blog_engine_published_articles_path %>
+        </li>
+        <li>
+          <%= link_to "Article CP", blog_engine_articles_path %>
+        </li>
+        <li>
+          <%= link_to "New Article", new_blog_engine_article_path %>
+        </li>
+        <li>
+          <%= link_to "Edit Account", edit_author_registration_path %>
+        </li>
+        <li>
+          <%= link_to "Log out", destroy_author_session_path %>
+        </li>
+      </ol>
+    </menu>
+    <% end %>
+    <div id="container">
+      <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, :id => "flash_#{name}" %>
+      <% end %>
+      <%= content_tag :h1, yield(:title) if show_title? %>
+      
+      <section id="articles" class="column prepend-1 span-20 append-1">
+        <%= yield %>
+      </section>
+    
+      <% if @tag_cloud.present? %>
+      <section id="tag_cloud" class="span-5 push-1 last append-1 prepend-1">
+        <% tag_cloud(@tag_cloud, %w(xxs xs s l xl xxl)) do |tag, css_class| %>
+          <%= link_to tag[0], blog_engine_published_articles_by_tag_path(:tag => tag[0]), :class => css_class %>
+        <% end %>
+      </section>
+      <% end %>
+    </div>
+  </body>
+</html>
