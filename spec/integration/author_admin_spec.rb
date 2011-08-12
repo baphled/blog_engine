@@ -4,6 +4,18 @@ describe "Author Admininstration" do
   include Capybara
   include Rails.application.routes.url_helpers
   
+  it "allows us to create new categories" do
+    create_author
+    author_sign_in
+    
+    create_category 'My Category'
+    
+    visit new_blog_engine_article_path
+    
+    page.should have_content "Categories"
+    page.should have_content "My Category"
+  end
+  
   context "menu" do
     before(:each) do
       create_author
