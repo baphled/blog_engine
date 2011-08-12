@@ -14,4 +14,5 @@ Gem::Specification.new do |s|
   s.add_dependency('bson_ext')
   s.add_dependency('devise')
   s.add_dependency('redcarpet')
+  s.add_dependency('rdiscount')
 end
