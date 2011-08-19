@@ -5,7 +5,22 @@ describe "Viewing articles as a guest" do
   include Rails.application.routes.url_helpers
   
   context "viewing articles" do
-    it "shows me a list of published articles"
+    before :each do
+      # an author publishes 3 articles
+      create_category 'My Category'
+      3.times do |article|
+        publish_article "my article #{article}"
+      end
+    end
+    
+    it "shows me a list of published articles" do
+      pending 'Not yet implemented'
+      visit blog_engine_path
+      
+      # a guest views the blog index
+      # the guest can only see 3 articles
+    end
+    
     it "show display a list of created categories"
     it "each category should have a count of the number of articles posted in it"
     it "should paginate articles if there are more than 'x'"

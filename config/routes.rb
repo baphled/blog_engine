@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  devise_for :authors, :class_name => 'BlogEngine::Author', :controller => 'blog_engine/author'
+  devise_for :author,
+    :class_name => 'BlogEngine::Author',
+    :controllers => { :registrations => "blog_engine/authors/registrations" }
+  
   match '/blog-engine', :controller => 'blog_engine/articles', :action => :articles, :as => :blog_engine_published_articles
   
   authenticate :author do
