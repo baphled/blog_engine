@@ -31,6 +31,16 @@ describe "Publishing articles" do
     page.should have_content "My new article"
   end
   
+  it "allows me to publish a drafted article" do
+    create_category 'My Category'
+    submit_draft 'My new article'
+    
+    click_link 'Edit'
+    click_button 'Publish'
+    
+    page.should have_content "My new article"
+  end
+  
   it "does not display an article until it is published"
   it "published articles perma-link can not change"
   it "should be able to set a publish date on drafted articles"

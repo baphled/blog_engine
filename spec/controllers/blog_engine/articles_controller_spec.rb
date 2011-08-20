@@ -15,7 +15,7 @@ describe BlogEngine::ArticlesController do
   
   describe "POST, create" do
     before(:each) do
-      @article = @author.articles.new :title => "My title", :content => "My content", :tags => "foo, bar, baz"
+      @article = @author.articles.new :title => "My title", :content => "My content", :tags => "foo, bar, baz", :published_at => nil
       controller.current_author.articles.stub(:new).and_return @article
     end
     
@@ -32,6 +32,17 @@ describe BlogEngine::ArticlesController do
     it "redirects to the article" do
       post :create, :blog_engine_article => @article
       response.should redirect_to blog_engine_articles_path
+    end
+    
+    it "publishing article" do
+      controller.should_receive :publish_article
+      post :create, {:blog_engine_article => @article, :commit => "Publish"}
+      response.should redirect_to blog_engine_articles_path
+    end
+    
+    it "does not publish draft articles" do
+      controller.should_not_receive :publish_article
+      post :create, :blog_engine_article => @article
     end
   end
 end

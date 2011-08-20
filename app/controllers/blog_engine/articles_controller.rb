@@ -18,10 +18,8 @@ module BlogEngine
     
     def create
       @article = current_author.articles.new params[:blog_engine_article]
-      if params[:commit] == 'Publish'
-        flash[:notice] = "#{@article.title} was published"
-        @article.publicise
-      end
+      publish_article if params[:commit] == 'Publish'
+      
       if @article.save
         flash[:notice] = 'Created new draft' if flash[:notice].nil?
         redirect_to blog_engine_articles_path
@@ -32,10 +30,8 @@ module BlogEngine
     
     def update
       @article = current_author.articles.find params[:id]
-      if params[:commit] == 'Publish'
-        flash[:notice] = "#{@article.title} was published"
-        @article.publicise
-      end
+      publish_article if params[:commit] == 'Publish'
+      
       if @article.update_attributes params[:blog_engine_article]
         redirect_to blog_engine_articles_path
       else
@@ -78,6 +74,12 @@ module BlogEngine
     
     def not_found
       raise ActionController::RoutingError.new('Not Found')
+    end
+    
+    def publish_article
+      flash[:notice] = "#{@article.title} was published"
+      @article.publicise
+      params[:blog_engine_article].delete :published_at
     end
   end
 end
