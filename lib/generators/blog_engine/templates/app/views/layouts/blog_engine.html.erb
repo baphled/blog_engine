@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for?(:title) ? yield(:title) : "BlogEngine" %></title>
-    <%= stylesheet_link_tag "application", "jquery-ui", "article", 'screen', 'token-input', 'token-input-facebook' %>
+    <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+    <%= stylesheet_link_tag "application", "date_layout", "blog", 'blueprint' %>
     
     <link rel="stylesheet" type="text/css" href="/javascripts/markitup/skins/markitup/style.css" />
     <link rel="stylesheet" type="text/css" href="/javascripts/markitup/sets/markdown/style.css" />
@@ -46,7 +46,8 @@
       </section>
     
       <% if @tag_cloud.present? %>
-      <section id="tag_cloud" class="span-5 push-1 last append-1 prepend-1">
+      <section id="tag_cloud" class="box span-5 push-1 last append-1 prepend-1">
+        <h3>Tags</h3>
         <% tag_cloud(@tag_cloud, %w(xxs xs s l xl xxl)) do |tag, css_class| %>
           <%= link_to tag[0], blog_engine_published_articles_by_tag_path(:tag => tag[0]), :class => css_class %>
         <% end %>
