@@ -51,7 +51,6 @@ module BlogEngine
         .where(:slug => params[:slug])
         .publicised
         .first || not_found
-      @comment = BlogEngine::Comment.new
     end
     
     def articles

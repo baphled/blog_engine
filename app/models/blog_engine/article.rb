@@ -16,9 +16,7 @@ module BlogEngine
     attr_reader :published
     
     slug :title
-    
-    embeds_many :comments, :class_name => 'BlogEngine::Comment'
-    
+        
     has_and_belongs_to_many :categories, :class_name => 'BlogEngine::Category'
     belongs_to :author, :class_name => 'BlogEngine::Author'
     
