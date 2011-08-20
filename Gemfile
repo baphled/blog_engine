@@ -13,7 +13,7 @@ gem 'jquery-rails', '>= 0.2.6'
 
 gem 'simple_form'
 
-gem 'mongoid', :git => "https://github.com/mongoid/mongoid.git"
+gem 'mongoid', :git => "git://github.com/mongoid/mongoid.git"
 gem 'bson_ext'
 gem 'mongoid_taggable'
 gem 'mongoid_slug', :require => 'mongoid/slug'
