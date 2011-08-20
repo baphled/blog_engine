@@ -85,7 +85,9 @@ describe "Creating drafts" do
       
       page.should have_content "Created new draft"
       click_link 'Show'
-      page.should have_content "Published at: #{Date.today.to_s :long}"
+      page.should have_content "#{Date.today.day}"
+      page.should have_content "#{Date.today.month}"
+      page.should have_content "#{Date.today.year}"
     end
     
     it "does not display a published date when viewed" do
