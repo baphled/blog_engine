@@ -4,6 +4,10 @@ describe "Viewing articles as a guest" do
   include Capybara
   include Rails.application.routes.url_helpers
   
+  context "no articles present" do
+    it "displays a message stating there are no articles"
+  end
+  
   context "viewing articles" do
     before :each do
       # an author publishes 3 articles
@@ -15,9 +19,8 @@ describe "Viewing articles as a guest" do
     
     it "shows me a list of published articles" do
       pending 'Not yet implemented'
-      visit blog_engine_path
-      
       # a guest views the blog index
+      visit blog_engine_path
       # the guest can only see 3 articles
     end
     
@@ -27,6 +30,7 @@ describe "Viewing articles as a guest" do
   end
   
   it "can not view drafted articles"
+  it "can not see tags for articles that are not published yet"
   it "has no access to the articles administration panel"
   it "allows me to easy view the most popular tag"
   it "allows me to view articles by year"

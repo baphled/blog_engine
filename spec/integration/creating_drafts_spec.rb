@@ -88,6 +88,14 @@ describe "Creating drafts" do
       page.should have_content "Published at: #{Date.today.to_s :long}"
     end
     
+    it "does not display a published date when viewed" do
+      create_category 'My Category'
+      submit_draft 'My new article'
+      
+      within("section#drafts") do
+        page.should_not have_content "Published at:"
+      end
+    end
     it "should use gists to code examples"
   end
   

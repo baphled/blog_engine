@@ -1,0 +1,98 @@
+.postdate{
+  position:relative;
+  width:50px;
+  height:50px;
+  float:left;
+  border-bottom-width:0
+}
+.month,.day,.year{
+  position:absolute;
+  text-indent: -1000em;
+  background-image:url(/images/dates.png);
+  background-repeat:no-repeat
+}
+.month{
+  top:2px;
+  left:0;
+  width:32px;
+  height:24px
+}
+
+.day{
+  top:25px;
+  left:0;
+  width:32px;
+  height:25px
+}
+
+.year{
+  bottom:0;
+  right:0;
+  width:17px;
+  height:48px
+}
+
+.m-1{background-position:0 4px}
+.m-2{background-position:0 -28px}
+.m-3{background-position:0 -57px}
+.m-4{background-position:0 -90px}
+.m-5{background-position:0 -121px}
+.m-6{background-position:0 -155px}
+.m-7{background-position:0 -180px}
+.m-8{background-position:0 -216px}
+.m-9{background-position:0 -246px}
+.m-10{background-position:0 -273px}
+.m-11{background-position:0 -309px}
+.m-12{background-position:0 -340px}
+
+.d-1{background-position: -50px 0}
+.d-2{background-position: -50px -31px}
+.d-3{background-position: -50px -62px}
+.d-4{background-position: -50px -92px}
+.d-5{background-position: -50px -123px}
+.d-6{background-position: -50px -154px}
+.d-7{background-position: -50px -185px}
+.d-8{background-position: -50px -216px}
+.d-9{background-position: -50px -248px}
+.d-10{background-position: -50px -278px}
+.d-11{background-position: -50px -309px}
+.d-12{background-position: -50px -340px}
+.d-13{background-position: -50px -371px}
+.d-14{background-position: -50px -402px}
+.d-15{background-position: -50px -434px}
+.d-16{background-position: -50px -465px}
+.d-17{background-position: -100px 0}
+.d-18{background-position: -100px -31px}
+.d-19{background-position: -100px -62px}
+.d-20{background-position: -100px -92px}
+.d-21{background-position: -100px -123px}
+.d-22{background-position: -100px -154px}
+.d-23{background-position: -100px -185px}
+.d-24{background-position: -100px -216px}
+.d-25{background-position: -100px -248px}
+.d-26{background-position: -100px -278px}
+.d-27{background-position: -100px -309px}
+.d-28{background-position: -100px -340px}
+.d-29{background-position: -100px -371px}
+.d-30{background-position: -100px -402px}
+.d-31{background-position: -100px -434px}
+
+.y-2006{background-position: -150px 0}
+.y-2007{background-position: -150px -50px}
+.y-2008{background-position: -150px -100px}
+.y-2009{background-position: -150px -150px}
+.y-2010{background-position: -150px -200px}
+.y-2011{background-position: -150px -250px}
+.y-2012{background-position: -150px -300px}
+.y-2013{background-position: -150px -350px}
+.y-2014{background-position: -150px -400px}
+.y-2015{background-position: -150px -450px}
+.y-2016{background-position: -150px -500px}
+
+#drop-caps{border:1pxsolid #ccc;padding: .5em}
+img.fancy-letter{
+  border:0;
+  float:left;
+  display:inline;
+  margin:2px 2px 2px 0
+}

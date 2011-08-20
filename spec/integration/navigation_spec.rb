@@ -8,6 +8,14 @@ describe "Navigation" do
     ::Rails.application.should be_a(Dummy::Application)
   end
   
+  context "managing categories" do
+    it "allows me to assign a category to article"
+    
+    describe "displaying articles with a given category" do
+      it "displays a chronological list of articles that are in that category"
+    end
+  end
+  
   context "viewing statistics on an article" do
     it "tracks the amount of unique views on an article"
     it "tracks the most searched for terms on the blog"
@@ -16,10 +24,6 @@ describe "Navigation" do
   
   context "displaying articles with a given year and month" do
     it "displays all found published articles"
-  end
-  
-  context "displaying articles with a given category" do
-    it "displays a chronological list of articles that are in that category"
   end
   
   context "displaying articles with a given tag" do
