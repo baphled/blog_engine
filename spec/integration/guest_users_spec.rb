@@ -7,7 +7,7 @@ describe "Viewing articles as a guest" do
   context "no articles present" do
     it "displays a message stating there are no articles on the articles page" do
       visit blog_engine_published_articles_path
-      page.should have_content "We currently have not articles published, please check again later."
+      page.should have_content "We currently have no articles published, please check again later."
     end
   end
   
