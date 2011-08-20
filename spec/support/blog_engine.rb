@@ -1,5 +1,7 @@
 def create_author
-  @author = BlogEngine::Author.create!(:first_name => Faker::Name.first_name,
+  @author = BlogEngine::Author.create!(
+    :username => Faker::Name.first_name,
+    :first_name => Faker::Name.first_name,
     :last_name => Faker::Name.last_name,
     :email => Faker::Internet.email,
     :password => 'foobar')
@@ -7,7 +9,8 @@ end
 
 def author_sign_in
   visit new_author_session_path
-  fill_in 'Email', :with => @author.email
+
+  fill_in 'Username', :with => @author.username
   fill_in 'Password', :with => @author.password
   click_button 'Sign in'
 end
