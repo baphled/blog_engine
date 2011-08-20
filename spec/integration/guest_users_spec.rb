@@ -5,20 +5,24 @@ describe "Viewing articles as a guest" do
   include Rails.application.routes.url_helpers
   
   context "no articles present" do
-    it "displays a message stating there are no articles"
+    it "displays a message stating there are no articles" do
+      visit root_path
+      page.should have_content "We currently have not articles published, please check again later."
+    end
   end
   
   context "viewing articles" do
-    before :each do
+    it "shows me a list of published articles" do
+      pending 'Not yet implemented'
       # an author publishes 3 articles
+      create_author
+      author_sign_in
       create_category 'My Category'
       3.times do |article|
         publish_article "my article #{article}"
       end
-    end
-    
-    it "shows me a list of published articles" do
-      pending 'Not yet implemented'
+      author_sign_out
+      
       # a guest views the blog index
       visit blog_engine_path
       # the guest can only see 3 articles

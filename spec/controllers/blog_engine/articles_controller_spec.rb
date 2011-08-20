@@ -25,7 +25,7 @@ describe BlogEngine::ArticlesController do
     end
     
     it "saves the article" do
-      @article.should_receive :save
+      @article.should_receive(:save).at_least(:once)
       post :create, :blog_engine_article => @article
     end
     

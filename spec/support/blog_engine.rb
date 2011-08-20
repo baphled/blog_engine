@@ -12,9 +12,12 @@ def author_sign_in
   click_button 'Sign in'
 end
 
+def author_sign_out
+  visit destroy_author_session_path
+end
+
 def create_category title = nil
   visit new_blog_engine_category_path
-  
   fill_in 'Title', :with => (title.nil?)? Faker::Lorem.sentence(1) : title
   click_button 'Save Category'
 end
