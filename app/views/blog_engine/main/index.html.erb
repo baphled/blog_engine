@@ -1,8 +1,0 @@
-<% if @articles.empty? %>
-  <p>We currently have not articles published, please check again later.</p>
-<% end %>
-
-<% @articles.each do |article|%>
-  <%= render :partial => '/blog_engine/shared/article', :locals => {:article => article} %>
-  <hr />
-<% end %>

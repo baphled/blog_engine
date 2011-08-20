@@ -5,8 +5,8 @@ describe "Viewing articles as a guest" do
   include Rails.application.routes.url_helpers
   
   context "no articles present" do
-    it "displays a message stating there are no articles" do
-      visit root_path
+    it "displays a message stating there are no articles on the articles page" do
+      visit blog_engine_published_articles_path
       page.should have_content "We currently have not articles published, please check again later."
     end
   end
