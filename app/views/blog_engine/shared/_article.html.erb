@@ -5,7 +5,13 @@
 </div>
 <p class="author">by: <%= article.author.full_name %></p>
 <article>
-  <h2><%= link_to_unless_current article.title, blog_engine_published_article_path(year: article.published_at.year, month: article.published_at.month, slug: article.slug) %></h2>
+  <h2>
+    <% if article.published %>
+      <%= link_to_unless_current article.title, blog_engine_published_article_path(year: article.published_at.year, month: article.published_at.month, slug: article.slug) %>
+    <% else %>
+      <%= article.title %>
+    <% end %>
+  </h2>
   <hr />
   <%=raw article.content %>
   <div class="postmetadata">
