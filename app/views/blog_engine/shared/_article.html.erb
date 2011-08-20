@@ -1,27 +1,26 @@
+<div class="postdate">
+  <div class="month m-<%= article.updated_at.month %>"><%= article.updated_at.month %></div>
+  <div class="day d-<%= article.updated_at.day %>"><%= article.updated_at.day %></div>
+  <div class="year y-<%= article.updated_at.year %>"><%= article.updated_at.year %></div>
+</div>
+<p class="author">by: <%= article.author.full_name %></p>
 <article>
-  <h1>
-    <% if article.published? %>
-      <%= link_to article.title, blog_engine_published_article_path(:year => article.published_at.year, :month => article.published_at.month, :slug => article.slug) %>
-    <% else %>
-      <%= link_to article.title, blog_engine_article_path(:id => article.id) %>
-    <% end %>
-  </h1>
-  <p>Author: <%= article.author.full_name %></p>
-  <p>Published at: <%= article.published_at.to_s :long %></p>
+  <h2><%= link_to_unless_current article.title, blog_engine_published_article_path(year: article.published_at.year, month: article.published_at.month, slug: article.slug) %></h2>
+  <hr />
   <%=raw article.content %>
-  <p class="article-info">
-  <% unless article.categories.empty? %>
-    Posted in:
-    <% article.categories.each do |category| %>
-      <%= category.title %>
-      <%= ", " unless article.categories.last.title == category.title %>
-    <% end %> | 
-  <% end %>
-  Tags: 
-    <% article.tags.split(', ').each do |tag| %>
-      <%= link_to tag, blog_engine_published_articles_by_tag_path(:tag => tag)  %>
+  <div class="postmetadata">
+    <p>Tags: <%= article.tags %></p>
+    <% unless article.categories.empty? %>
+      Categories: 
+      <% article.categories.each do |category| %>
+      <ul>
+        <li><%= category.title %></li>
+      </ul>
+      <% end %>
     <% end %>
-  </p>
+  </div>
+
+  <%= link_to 'Edit', edit_blog_engine_article_path(:id => article.id) if author_signed_in? %>
 </article>
 <section id="comments">
   <% unless @comment.nil? %>
