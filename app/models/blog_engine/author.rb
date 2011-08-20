@@ -6,6 +6,7 @@ module BlogEngine
     devise :database_authenticatable, :registerable,
            :recoverable, :rememberable, :trackable, :validatable
 
+    field :username
     field :first_name
     field :last_name
     
